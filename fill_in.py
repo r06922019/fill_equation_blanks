@@ -2,6 +2,10 @@ import pprint
 import random
 from functools import reduce
 from itertools import permutations
+import time
+
+def time_str():
+    return time.strftime("%Y-%m-%d %H:%M:%S")
 
 def solve(left_words, signs, right_word):
     chars = list(set(reduce(lambda x,y:x+y, left_words + [right_word])))
@@ -9,9 +13,10 @@ def solve(left_words, signs, right_word):
 
     table = { k:11 for k in chars }
     trials = 0
+    print(time_str())
     for digits in permutations(range(10)):
         if trials % 100000 == 0:
-            print("trying %s" % (str(digits)))
+            print(time_str() + " trying %s" % (str(digits)))
         trials += 1
 
         for i, k in enumerate(chars):
