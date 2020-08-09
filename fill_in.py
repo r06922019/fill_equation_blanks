@@ -8,7 +8,7 @@ def time_str():
     return time.strftime("%Y-%m-%d %H:%M:%S")
 
 def solve(left_words, signs, right_word):
-    chars = list(set(reduce(lambda x,y:x+y, left_words + [right_word])))
+    chars = list(set("".join(left_words + [right_word])))
     chars.sort()
     assert len(chars) <= 10, "Too many chars: " + str(chars)
 
@@ -17,7 +17,7 @@ def solve(left_words, signs, right_word):
     print(time_str() + " chars: " + str(chars) )
     for digits in permutations(range(10)):
         if trials % 100000 == 0:
-            print(time_str() + " trying %s" % (str(digits)))
+            print(time_str() + " trial %8d %s" % (trials, str(digits)))
         trials += 1
 
         for i, k in enumerate(chars):
@@ -25,7 +25,7 @@ def solve(left_words, signs, right_word):
 
         # check if
         if check_ans(left_words, signs, right_word, table):
-            print(time_str() + " " + pprint.pformat(table))
+            print(time_str() + " %8d " % (trials)+ pprint.pformat(table))
 
 
 def check_ans(left_words, signs, right_word, table):
@@ -45,7 +45,7 @@ def check_ans(left_words, signs, right_word, table):
 
 
 def word_to_num(word, table, verbose=False):
-    ans = reduce(lambda x,y:x+y, [ str(table[c]) for c in word ])
+    ans = "".join([ str(table[c]) for c in word ])
     if verbose: print("%s => %s" % (word, ans))
     return ans
 
