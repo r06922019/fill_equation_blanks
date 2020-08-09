@@ -9,11 +9,12 @@ def time_str():
 
 def solve(left_words, signs, right_word):
     chars = list(set(reduce(lambda x,y:x+y, left_words + [right_word])))
+    chars.sort()
     assert len(chars) <= 10, "Too many chars: " + str(chars)
 
     table = { k:11 for k in chars }
     trials = 0
-    print(time_str())
+    print(time_str() + " chars: " + str(chars) )
     for digits in permutations(range(10)):
         if trials % 100000 == 0:
             print(time_str() + " trying %s" % (str(digits)))
@@ -24,7 +25,7 @@ def solve(left_words, signs, right_word):
 
         # check if
         if check_ans(left_words, signs, right_word, table):
-            pprint.pprint(table)
+            print(time_str() + " " + pprint.pformat(table))
 
 
 def check_ans(left_words, signs, right_word, table):
