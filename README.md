@@ -13,7 +13,8 @@ Each character represents a single digit (0~9) and it is assumed that different 
 The main utility function `solve` is called as follows.
 
 ```
-solve(["NANGANG", "HUILONG", "HAISHAN"], [1, 1, 1], "ZHISHAN")
+solve(["NANGANG", "HUILONG", "HAISHAN"], [1, 1, 1], "ZHISHAN") 
+# represents the equation: NANGANG + HUILONG + HAISHAN = ZHISHAN
 ```
 
 The first parameter is a list of words.   
